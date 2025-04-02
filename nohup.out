@@ -1,0 +1,60 @@
+[2025-04-01 23:20:55,253] torch.distributed.run: [WARNING] 
+[2025-04-01 23:20:55,253] torch.distributed.run: [WARNING] *****************************************
+[2025-04-01 23:20:55,253] torch.distributed.run: [WARNING] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+[2025-04-01 23:20:55,253] torch.distributed.run: [WARNING] *****************************************
+wandb: Using wandb-core as the SDK backend. Please refer to https://wandb.me/wandb-core for more information.
+wandb: Currently logged in as: 372001980 (372001980-). Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.18.3
+wandb: Run data is saved locally in /home/D/huangmin/hky/minimind/wandb/run-20250401_232101-l4b8bfmg
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run MiniMind-Pretrain-Epoch-6-BatchSize-32-LearningRate-0.0005
+wandb: ⭐️ View project at https://wandb.ai/372001980-/MiniMind-Pretrain
+wandb: 🚀 View run at https://wandb.ai/372001980-/MiniMind-Pretrain/runs/l4b8bfmg
+LLM总参数量：104.031 百万
+Epoch:[1/6](0/11040) loss:8.926 lr:0.000550000000 epoch_Time:266.0min:
+Epoch:[1/6](100/11040) loss:7.048 lr:0.000549997188 epoch_Time:69.0min:
+Epoch:[1/6](200/11040) loss:6.900 lr:0.000549988753 epoch_Time:67.0min:
+Epoch:[1/6](300/11040) loss:6.678 lr:0.000549974695 epoch_Time:66.0min:
+Epoch:[1/6](400/11040) loss:6.310 lr:0.000549955014 epoch_Time:65.0min:
+Epoch:[1/6](500/11040) loss:6.123 lr:0.000549929711 epoch_Time:64.0min:
+Epoch:[1/6](600/11040) loss:5.970 lr:0.000549898786 epoch_Time:64.0min:
+Epoch:[1/6](700/11040) loss:5.743 lr:0.000549862239 epoch_Time:63.0min:
+Epoch:[1/6](800/11040) loss:5.509 lr:0.000549820073 epoch_Time:63.0min:
+Epoch:[1/6](900/11040) loss:5.388 lr:0.000549772287 epoch_Time:62.0min:
+Epoch:[1/6](1000/11040) loss:5.118 lr:0.000549718883 epoch_Time:61.0min:
+Epoch:[1/6](1100/11040) loss:4.970 lr:0.000549659861 epoch_Time:61.0min:
+Epoch:[1/6](1200/11040) loss:4.763 lr:0.000549595224 epoch_Time:60.0min:
+Epoch:[1/6](1300/11040) loss:4.586 lr:0.000549524973 epoch_Time:60.0min:
+[2025-04-01 23:29:21,843] torch.distributed.elastic.agent.server.api: [WARNING] Received 1 death signal, shutting down workers
+[2025-04-01 23:29:21,843] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 31943 closing signal SIGHUP
+[2025-04-01 23:29:21,843] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 31944 closing signal SIGHUP
+[2025-04-01 23:29:21,844] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 31945 closing signal SIGHUP
+[2025-04-01 23:29:21,844] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 31946 closing signal SIGHUP
+Traceback (most recent call last):
+  File "/home/D/huangmin/hky/minimind/venv/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/D/huangmin/hky/minimind/venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 347, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/D/huangmin/hky/minimind/venv/lib/python3.12/site-packages/torch/distributed/run.py", line 812, in main
+    run(args)
+  File "/home/D/huangmin/hky/minimind/venv/lib/python3.12/site-packages/torch/distributed/run.py", line 803, in run
+    elastic_launch(
+  File "/home/D/huangmin/hky/minimind/venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 135, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/D/huangmin/hky/minimind/venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 259, in launch_agent
+    result = agent.run()
+             ^^^^^^^^^^^
+  File "/home/D/huangmin/hky/minimind/venv/lib/python3.12/site-packages/torch/distributed/elastic/metrics/api.py", line 123, in wrapper
+    result = f(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/D/huangmin/hky/minimind/venv/lib/python3.12/site-packages/torch/distributed/elastic/agent/server/api.py", line 727, in run
+    result = self._invoke_run(role)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/D/huangmin/hky/minimind/venv/lib/python3.12/site-packages/torch/distributed/elastic/agent/server/api.py", line 868, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/home/D/huangmin/hky/minimind/venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 62, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 31887 got signal: 1
