@@ -339,8 +339,6 @@ if __name__ == "__main__":
     os.makedirs(args.out_dir, exist_ok=True)
     # 计算每次迭代处理的总 token 数 (用于参考，未在后续代码中使用)
     tokens_per_iter = args.batch_size * lm_config.max_seq_len
-    # 设置 PyTorch 的随机种子以保证可复现性
-    torch.manual_seed(1337)
     # 判断设备类型是 "cuda" 还是 "cpu"
     device_type = "cuda" if "cuda" in args.device else "cpu"
 
@@ -358,12 +356,20 @@ if __name__ == "__main__":
     # 初始化 DDP 相关变量的默认值 (用于非 DDP 或主进程)
     ddp_local_rank, DEVICE = 0, "cuda:0"
 
-    # 如果是 DDP 模式
+    # 设置相关随机数
+    base_seed = 1337
+    torch.manual_seed(base_seed)
+    torch.cuda.manual_seed(base_seed)
+
     if ddp:
         # 初始化分布式环境
         init_distributed_mode()
         # 更新 args.device 为当前 DDP 进程分配的设备
         args.device = torch.device(DEVICE)
+        rank = dist.get_rank()
+        torch.manual_seed(base_seed + rank)
+        # 同时设置 CUDA 的随机种子
+        torch.cuda.manual_seed(base_seed + rank)
 
     # 如果启用了 wandb 并且当前是主进程 (或者非 DDP 模式)
     if args.use_wandb and (not ddp or ddp_local_rank == 0):
